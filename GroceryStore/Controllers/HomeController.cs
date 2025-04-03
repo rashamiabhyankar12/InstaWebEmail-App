@@ -226,6 +226,7 @@ namespace GroceryStore.Controllers
 
             });
             IEnumerable<Product> brand = await _homeRepository.GetBrand();
+            IEnumerable<Product> origin = await _homeRepository.GetSearch(sterm);
             //var brand = product.Where(x => x.Brand == Brand);
             //var origin = product.Where(x => x.Origin == Origin);
             ProductDisplayModel productModel = new ProductDisplayModel
@@ -241,7 +242,7 @@ namespace GroceryStore.Controllers
                 Subcategory = formList,
                 SubcategoryID = sub,
                 STerm=sterm,
-                Brands=brand
+                Brands=origin
 
             };
 

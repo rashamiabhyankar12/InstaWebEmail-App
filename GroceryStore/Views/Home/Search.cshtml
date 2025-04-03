@@ -228,18 +228,17 @@
                                 <div style="overflow:hidden">
                                     <div style="height:100px;   overflow-y: scroll;">
                                         <!-- form check -->
-                                        @foreach (var item in Model.Products.Select(X => X.Brand).Distinct())
+                                        @foreach (var item in Model.Brands.DistinctBy(x => x.Brand))
                                         {
+
                                             <div class="form-check mb-2">
 
+                                                <label id="Brand"><input type="checkbox" name="Brand" value="@item.Brand" class="Brand" onsubmit="submit()">@item.Brand</label><br>
 
-                                                <!-- input -->
-                                                <input class="form-check-input" type="checkbox" value="@item" id="Brand" name="Brand" onclick="submit()" asp-route-Brand="value" asp-route-sterm="@Model.STerm" />
-                                                <label class="form-check-label" for="Brand">
-                                                    @item (@Model.Products.Where(X => X.Brand == @item).Count())
-                                                </label>
 
                                             </div>
+
+
                                         }
                                     </div>
                                 </div>
@@ -250,16 +249,12 @@
                                 <div style="overflow:hidden">
                                     <div style="height:100px;   overflow-y: scroll;">
                                         <!-- form check -->
-                                        @foreach (var item in Model.Products.Select(X => X.Origin).Distinct())
+                                        @foreach (var item in Model.Brands.DistinctBy(x => x.Origin))
                                         {
                                             <div class="form-check mb-2">
 
+                                                <label id="Origin"><input type="checkbox" name="Origin" value="@item.Origin" class="Origin" onsubmit="submit()">@item.Origin</label><br>
 
-                                                <!-- input -->
-                                                <input class="form-check-input" type="checkbox" value="@item" id="Origin" name="Origin" onclick="submit()" asp-route-Origin="value" asp-route-sterm="@Model.STerm" />
-                                                <label class="form-check-label" for="Origin">
-                                                    @item (@Model.Products.Where(X => X.Origin == @item).Count())
-                                                </label>
 
                                             </div>
                                         }
@@ -267,55 +262,7 @@
                                 </div>
                             </div>
                             <br />
-                            <div class="mb-8">
-                                <h5 class="mb-3">Select Sort</h5>
-                                <!-- form check -->
-                                @* <ul class="checkbox"> *@
-
-
-                                @*  <li> *@
-                                <!-- form check -->
-                                <div class="form-check mb-2">
-                                    <!-- input -->
-                                    <input class="form-check-input" type="checkbox" value="HighToLow" id="HighToLow" name="HighToLow" onclick="submit()" asp-route-HighToLow="value" asp-route-sterm="@Model.STerm" />
-                                    <label class="form-check-label" for="HighToLow">
-                                        High to Low
-                                    </label>
-                                </div>
-                                @* </li>
-                                <li> *@
-                                <!-- form check -->
-                                <div class="form-check mb-2">
-                                    <!-- input -->
-                                    <input class="form-check-input" type="checkbox" value="LowToHigh" id="LowToHigh" name="LowToHigh" onclick="submit()" asp-route-LowToHigh="value" asp-route-sterm="@Model.STerm" />
-                                    <label class="form-check-label" for="LowToHigh">
-                                        Low To High
-                                    </label>
-                                </div>
-                                @*  </li>
-                                <li> *@
-                                <!-- form check -->
-                                <div class="form-check mb-2">
-                                    <!-- input -->
-                                    <input class="form-check-input" type="checkbox" value="AToZ" id="AToZ" name="AToZ" onclick="submit()" asp-route-AToZ="value" asp-route-sterm="@Model.STerm" />
-                                    <label class="form-check-label" for="AToZ">
-                                        A to Z
-                                    </label>
-                                </div>
-                                @*  </li>
-                                <li> *@
-                                <!-- form check -->
-                                <div class="form-check mb-2">
-                                    <!-- input -->
-                                    <input class="form-check-input" type="checkbox" value="ZToA" id="ZToA" name="ZToA" onclick="submit()" asp-route-ZToA="value" asp-route-sterm="@Model.STerm" />
-                                    <label class="form-check-label" for="ZToA">
-                                        Z To A
-                                    </label>
-                                </div>
-                                @* </li> *@
-                                @*  </ul> *@
-
-                            </div>
+                       
                             <div class="mb-8">
                                 <h5 class="mb-3">Price</h5>
                                 <input class="accent" id="slider" type="range" min="@Model.Products.Min(x=>x.Price)" max="@Model.Products.Max(x=>x.Price)" step="10" onchange="sliderChange(this.value)" asp-route-slider="value" asp-action="Search">
@@ -358,7 +305,7 @@
                 </div>
                 <div class="d-lg-flex justify-content-between align-items-center">
                     <div class="mb-3 mb-lg-0">
-                        <p class="mb-0">
+                        <p class="mb-0" id="link">
                             <span class="text-dark">@Model.Products.Count()</span>
                             Products found
 
@@ -471,7 +418,8 @@
         </div>
     </div>
 </div>
-<div id="snackbar"></div>
+<div id="snackbar"></div> 
+<input hidden id="search" value="@Model.STerm" />
 @foreach (var item in Model.Products)
 {
 
@@ -668,80 +616,75 @@
     </script>
     <script>
 
+                      $(function () {
 
-        // function submit() {
 
-        //         e.preventDefault();
-        //     let urlParams = new URLSearchParams();
-        //    for (let checkboxName of ['Brand', 'Origin','HighToLow']) {
-        //         let checkboxes = [];
-        //         document.getElementsByName(checkboxName).forEach(function (checkbox) {
-        //             if (checkbox.checked) checkboxes.push(checkbox.value);
-        //             var value = checkbox.value;
-        //         });
-        //         urlParams.append(checkboxName, checkboxes.join(','));
-        //     }
-        //     console.log('Navigate to: ?' + urlParams.toString());
-        //     window.location = url + '?' + urlParams.toString();
-        // }
 
-                $(document).ready(function () {
-          $('input[type=checkbox]').click(function (e) {
-          var seasoning = '', tempArray = [];
-           //var url = "https:localhost:7142/Home/Search";
-          $('input[name="Brand"]:checked').each(function(){
-              tempArray.push($(this).val());
-          })
-          if(tempArray.length !== 0){
-             seasoning+='&Brand='+tempArray.toString();
-             tempArray = [];
-          }
+            jQuery("input:checkbox").change(function () {
+                if ($('input:checkbox').is(':checked')) {
 
-          $('input[name="Origin"]:checked').each(function(){
-              tempArray.push($(this).val());
-          })
-          if(tempArray.length !== 0){
-             seasoning+='&Origin='+tempArray.toString();
-             tempArray = [];
-          }
 
-          $('input[name="HighToLow"]:checked').each(function(){
-              tempArray.push($(this).val());
-          })
-          if(tempArray.length !== 0){
-             seasoning+='&HighToLow='+tempArray.toString();
-             tempArray = [];
-          }
 
-           $('input[name="LowToHigh"]:checked').each(function(){
-              tempArray.push($(this).val());
-          })
-          if(tempArray.length !== 0){
-             seasoning+='&LowToHigh='+tempArray.toString();
-             tempArray = [];
-          }
 
-          $('input[name="AToZ"]:checked').each(function(){
-              tempArray.push($(this).val());
-          })
-          if(tempArray.length !== 0){
-             seasoning+='&AToZ='+tempArray.toString();
-             tempArray = [];
-          }
+                    var data = [],
+                    loc = $('<a>', { href: window.location })[0];
+                    var Brand = [];
+                    var Origin = [];
 
-          $('input[name="ZToA"]:checked').each(function(){
-              tempArray.push($(this).val());
-          })
-          if(tempArray.length !== 0){
-             seasoning+='&ZToA='+tempArray.toString();
-             tempArray = [];
-          }
-          //window.location = url + "?sterm="+@Model.STerm + seasoning;
-         window.location = "Search?sterm="+document.getElementById("search").value + seasoning;
+                    if (window.location.href.indexOf(this.name) > -1) {
 
-          });
+                        $('input[type="checkbox"]').each(function (i) {
+                        if (this.checked) {
+                            if (this.name == 'Brand') {
+                                Brand.push(this.value);
+                            } else if (this.name = 'Origin') {
+                                Origin.push(this.value);
+                            }
 
+                        }
+                    });
+                    if (Brand.length != 0) {
+                        data.push('Brand=' + (Brand.length > 1 ? Brand.join(',') : Brand[0]));
+                    }
+                    if (Origin.length != 0) {
+                        data.push('Origin=' + (Origin.length > 1 ? Origin.join(',') : Origin[0]));
+                    }
+
+                    data = data.join('&');
+
+                    $('p').html(data);
+
+                   var array = [];
+                   array.push(document.getElementById('link').innerText.substring(6).replace("=",""));
+
+                     window.location.href += "," +array;
+                    }
+                       $('input[type="checkbox"]').each(function (i) {
+                        if (this.checked) {
+                            if (this.name == 'Brand') {
+                                Brand.push(this.value);
+                            } else if (this.name = 'Origin') {
+                                Origin.push(this.value);
+                            }
+                        }
+                    });
+                    if (Brand.length != 0) {
+                        data.push('Brand=' + (Brand.length > 1 ? Brand.join(',') : Brand[0]));
+                    }
+
+                    if (Origin.length != 0) {
+                        data.push('Origin=' + (Origin.length > 1 ? Origin.join(',') : Origin[0]));
+                    }
+                    data = data.join('&');
+
+                    $('p').html(data);
+                     const paragraphText = document.getElementById('link').innerText;
+                      //window.location.href += "&"+document.getElementById('link').innerText;
+                      location.replace(window.location.origin+"/Home/Search?sterm="+document.getElementById("search").value+"&"+document.getElementById('link').innerText);
+                }
+            });
         });
+
 
 
 

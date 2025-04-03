@@ -12,5 +12,7 @@
         Task<IEnumerable<Subcategory>> Subcategories();
         Task<IEnumerable<Product>> Products();
         Task<IEnumerable<UserReview>> UserReviews();
+
+        Task<IEnumerable<Product>> GetSearch(string sTerm = "");
     }
 }

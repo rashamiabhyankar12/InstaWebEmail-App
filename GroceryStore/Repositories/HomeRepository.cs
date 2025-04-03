@@ -194,6 +194,41 @@ namespace GroceryStore.Repositories
 
         }
 
+        public async Task<IEnumerable<Product>> GetSearch(string sTerm = "")
+        {
+            sTerm = sTerm.ToLower();
+            IEnumerable<Product> products = await (from product in _db.Products
+                                                   join category in _db.Categories
+                                                   on product.CategoryId equals category.Id
 
+                                                   join stock in _db.Stocks
+                                                   on product.Id equals stock.ProductId
+                                                   into product_stocks
+                                                   from productWithStock in product_stocks.DefaultIfEmpty()
+                                                       //where string.IsNullOrWhiteSpace(sTerm) || (book != null && book.BookName.ToLower().StartsWith(sTerm))
+                                                   where string.IsNullOrWhiteSpace(sTerm) || (product != null && product.ProductName.ToLower().Contains(sTerm))
+
+                                                   select new Product
+                                                   {
+                                                       Id = product.Id,
+                                                       Image = product.Image,
+                                                       Description = product.Description,
+                                                       ProductName = product.ProductName,
+                                                       CategoryId = product.CategoryId,
+                                                       SubcategoryID = product.SubcategoryID,
+                                                       Price = product.Price,
+                                                       CategoryName = category.CategoryName,
+                                                       SubcategoryName = product.SubcategoryName,
+                                                       Quantity = productWithStock == null ? 0 : productWithStock.Quantity,
+                                                       Brand = product.Brand,
+                                                       Origin = product.Origin,
+
+                                                   }
+                         ).ToListAsync();
+           
+
+            return products;
+
+        }
     }
 }
