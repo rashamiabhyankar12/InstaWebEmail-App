@@ -1,0 +1,20 @@
+﻿@model EmailViewModel
+
+@if (Model != null)
+{
+     <form method="post" asp-action="SendMessage">
+        <div>
+            <label asp-for="Message"></label>
+            <input asp-for="Message" type="text" id="qty" class="form-control" onclick="javascript: calc()" value='<table class="table table-striped" id="customers"><tr> <th>Product</th><th>Category</th><th>Price</th><th>Quantity</th><th>TotalPrice</th> </tr>@foreach (var item in Model.OrderDetail){
+        <tr><td>@item.Product.ProductName</td><td>@item.Product.Category.CategoryName</td><td>@item.UnitPrice</td><td>@item.Quantity</td><td>@(item.Quantity * item.UnitPrice)</td></tr>
+} </table>' />
+
+            <span asp-validation-for="Message"></span>
+        </div>
+    </form>
+}
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}

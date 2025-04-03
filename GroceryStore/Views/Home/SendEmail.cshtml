@@ -1,0 +1,150 @@
+﻿@model EmailViewModel
+
+
+
+
+ <form method="post" asp-action="SendEmail" asp-controller="Home">
+                    <div>
+                        <label asp-for="ToEmail"></label>
+                        <input asp-for="ToEmail" type="email"  id="email"/>
+                        <span asp-validation-for="ToEmail"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Subject"></label>
+                        <input asp-for="Subject" type="text"  />
+                        <span asp-validation-for="Subject"></span>
+                    </div>
+                      <div>
+                            <label asp-for="Message"></label>
+                            <input asp-for="Message" type="text" id="qty" class="form-control" onclick="javascript: calc()"
+                   value='
+        <head>
+            <meta charset="utf-8" />
+            <title>A simple, clean, and responsive HTML invoice template</title>
+
+            <style>
+                .banner {
+                    background: blue;
+                    color: white;
+                }
+
+                .banner, .email-content {
+                    padding: 2em 5em;
+                    overflow: hidden;
+                }
+
+                h1 {
+                    font-size: 5em;
+                    margin: 0 0 .5em 0;
+                }
+
+                hr {
+                    margin-top: 2em;
+                    background: blue;
+                }
+
+                a {
+                    text-decoration: none;
+                }
+
+                .sig {
+                    font-size: 3.5em;
+                    margin: 0;
+                }
+
+                .email-container {
+                    margin: 5% 25% 1% 25%;
+                    background: #ffffff;
+                }
+            </style>
+        </head>
+        <body>
+            <main>
+                <div class="email-container">
+                    <div class="email-body">
+                        <div class="banner">
+                            <h4>Subscription Successful!</h4>
+                            <h1>We Feel <span>the Love</span></h1>
+                        </div>
+                        <div class="email-content">
+                            <p>Hi there!</p>
+                            <p>Thank you for subscribing. Weare so excited to share the latest news and updates about our product with you. If you had like to learn more, follow us on social media!</p>
+
+                            <hr>
+                            <p>Sincerely,</p>
+                            <p class="sig">Rashami</p>
+                            <p>
+                                <em>RASHAMI A.</em>
+                                <br>Customer Success Manager
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+        </body>' />
+                           
+                            <span asp-validation-for="Message"></span>
+                        </div> 
+
+                    
+
+
+                    <div>
+                            <input type="submit" value="Send Email" id="setText" />
+                    </div>
+
+                       
+
+                    </form>
+
+                  
+                   
+
+
+
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+
+  @section Scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        
+        var calc = function () {
+            // function logic here
+            let uri = document.getElementById("demo").innerText;
+            let encoded = encodeURIComponent(uri);
+
+            document.getElementById("qty").innerHTML = encoded;
+            //myFunc("qty");
+        };
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#setText').click(function () {
+                myFunction();
+            });
+            $.fn.myFunction = function () {
+                alert('hi');
+                let uri = document.getElementById("demo").innerText;
+                let encoded = encodeURIComponent(uri);
+
+                document.getElementById("qty").innerHTML = encoded;
+            }
+        });
+        </script>
+    <script type="text/javascript">
+
+        function myFunc(variable) {
+            let uri = document.getElementById("demo").innerText;
+            let encoded = encodeURIComponent(uri);
+            var s = document.getElementById(variable);
+            s.value = encoded;
+        }
+       
+    </script>
+  }

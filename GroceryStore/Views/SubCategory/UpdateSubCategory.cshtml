@@ -1,0 +1,32 @@
+﻿@model CategoryDTO
+@{
+    Layout = "_AdminLayout";
+}
+<div style="width:50%">
+    <h2> Update SubCategory </h2>
+    <a asp-action="Index" asp-controller="SubCategory" class="btn btn-primary">Back</a>
+    <form asp-action="UpdateSubCategory">
+        <input type="hidden" asp-for="SubcategoryID" />
+
+        <div class="my-2">
+            <label>SubCategory</label>
+            <input type="text" class="form-control" asp-for="SubcategoryName" />
+            <span asp-validation-for="SubcategoryName" class="text-danger"></span>
+        </div>
+
+        <div class="my-2">
+            <label>SubCategoryID</label>
+            <input type="text" class="form-control" asp-for="SubcategoryID" />
+            <span asp-validation-for="SubcategoryID" class="text-danger"></span>
+        </div>
+
+        <div class="my-2">
+            <label>CategoryId</label>
+            <input type="text" class="form-control" asp-for="CategoryId" />
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <div class="my-2">
+            <button type="submit" class="btn btn-info">Update</button>
+        </div>
+    </form>
+</div>

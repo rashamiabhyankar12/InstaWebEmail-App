@@ -1,0 +1,74 @@
+﻿@model IEnumerable<Product>
+@{
+    Layout = "_AdminLayout";
+}
+<style>
+    .avatar {
+        vertical-align: middle;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+    }
+</style>
+<h2>products</h2>
+
+<a asp-action="AddProduct" asp-controller="Product" class="btn btn-primary">Add More</a>
+
+@if(Model?.Count()>0)
+{
+    <div class="table-responsive">
+        <table class="table table-centered table-hover text-nowrap table-borderless mb-0">
+            <tr class="bg-light">
+            <th>Image</th>
+            <th>Product</th>
+            <th>Description</th>
+            <th>Category</th>
+            
+            <th>Price</th>
+            <th>Brand</th>
+            <th>Origin</th>
+            <th>Action</th>
+            <th>SubCategoryID</th>
+            <th>SubCategoryName</th>
+            
+            
+        </tr>
+
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>
+                    @if(string.IsNullOrWhiteSpace(product.Image))
+                    {
+                            <img src="/Images/NoImage.png" alt="product image" class="avatar" />
+                    }
+                    else
+                    {
+                            <img src="/images/@product.Image" alt="product image" class="avatar" />
+                    }
+                </td>
+                <td>@product.ProductName</td>
+                <td>@product.Description</td>
+                <td>@product.Category.CategoryName</td>
+                 
+                <td>@product.Price</td>
+                <td>@product.Brand</td> 
+                <td>@product.Origin</td>
+                <td>
+                    <a asp-action="UpdateProduct" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-success"><i class="bi bi-pen"></i></a>
+                    <a asp-action="DeleteProduct" asp-controller="Product" asp-route-id="@product.Id" class="btn btn-danger" onclick="return window.confirm('Are you sure?')"><i class="bi bi-trash"></i></a>
+                </td>
+                <td>@product.SubcategoryID</td>
+                <td>@product.SubcategoryName</td>
+               
+                
+            </tr>
+        }
+    </table>
+    </div>
+}
+else
+{
+    <h3>No records</h3>
+}
+

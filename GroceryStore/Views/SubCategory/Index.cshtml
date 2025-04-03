@@ -1,0 +1,29 @@
+﻿@model IEnumerable<Subcategory>
+@{
+    Layout = "_AdminLayout";
+}
+<h2>SubCategorys</h2>
+<a asp-action="AddSubCategory" asp-controller="SubCategory" class="btn btn-primary">Add More</a>
+<div class="table-responsive">
+    <table class="table table-centered table-hover text-nowrap table-borderless mb-0">
+        <tr class="bg-light">
+        <th>SubCategory</th>
+        <th>SubCategoryId</th>
+        <th>CategoryId</th>
+        <th>Action</th>
+    </tr>
+
+    @foreach (var category in Model)
+    {
+        <tr>
+            <td>@category.SubcategoryName</td>
+            <td>@category.SubcategoryID</td>
+            <td>@category.CategoryId</td>
+            <td>
+                <a asp-action="UpdateSubCategory" asp-controller="SubCategory" asp-route-id="@category.SubcategoryID" class="btn btn-success"><i class="bi bi-pen"></i></a>
+                <a asp-action="DeleteSubCategory" asp-controller="SubCategory" asp-route-id="@category.SubcategoryID" class="btn btn-danger" onclick="return window.confirm('Are you sure?')"><i class="bi bi-trash"></i></a>
+            </td>
+        </tr>
+    }
+</table>
+</div>

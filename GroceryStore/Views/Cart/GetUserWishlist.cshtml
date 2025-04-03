@@ -1,0 +1,67 @@
+﻿@model Wishlist
+@{
+    ViewData["Title"] = "GetWishlist";
+}
+@if (Model != null && Model.WishlistDetails != null && Model.WishlistDetails.Count > 0)
+{
+    <h5>My Wishlist</h5>
+    <div class="table-responsive">
+        <table class="table table-centered table-hover text-nowrap table-borderless mb-0">
+        <tr>
+            <th class="text-dark">Product</th>
+            <th class="text-dark">Image</th>
+            <th class="text-dark">Category</th>
+            <th class="text-dark">Remove</th>
+        </tr>
+        @foreach (var item in Model.WishlistDetails)
+        {
+            <tr>
+                <td>@item.Product.ProductName</td>
+                <td>
+                    @if (string.IsNullOrEmpty(item.Product.Image))
+                    {
+                        <img src="/images/NoImage.png" style="width:100px;height:100px" />
+                    }
+                    else
+                    {
+                        <img src="/images/@item.Product.Image" style="width:100px;height:100px" />
+                    }
+                </td>
+                <td>@item.Product.Category.CategoryName</td>
+                <td><a class="btn btn-info" href="/cart/RemoveWishlist?productid=@item.ProductId">x</a></td>
+            </tr>
+        }
+    </table>
+    </div>
+
+}
+else
+{
+    <div class="container-fluid  mt-100">
+        <div class="row">
+
+            <div class="col-md-12">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h5>Wishlist</h5>
+                    </div>
+                    <div class="card-body cart">
+                        <div class="col-sm-12 empty-cart-cls text-center">
+                            <img src="/images/wishlist.png" width="130" height="130" class="img-fluid mb-4 mr-3">
+                            <h3><strong>Your Wishlist is Empty</strong></h3>
+                            <h4>Add something to make me happy :)</h4>
+                            <a asp-action="Index" asp-controller="Home" class="btn btn-primary cart-btn-transform m-3" data-abc="true">continue shopping</a>
+
+
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+
+    </div>
+}

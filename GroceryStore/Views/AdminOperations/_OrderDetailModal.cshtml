@@ -1,0 +1,70 @@
+﻿@model EmailViewModel
+
+<div class="modal fade" id="modal-@Model.DivId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Order Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form  method="post">
+                    <div>
+                        <label asp-for="ToEmail"></label>
+                        <input asp-for="ToEmail" type="email" required />
+                        <span asp-validation-for="ToEmail"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Subject"></label>
+                        <input asp-for="Subject" type="text" required />
+                        <span asp-validation-for="Subject"></span>
+                    </div>
+                    <div>
+                        <label asp-for="Message"></label>
+                        <textarea asp-for="Message" required></textarea>
+                        <span asp-validation-for="Message"></span>
+                    </div>
+                    <div>
+                        <input type="submit" value="Send Email" />
+                    </div>
+                </form>
+                <table class="table table-striped" id="demo">
+                    <tr>
+                        <th>Product</th>
+                        <th>Category</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>TotalPrice</th>
+                    </tr>
+                   
+                    @foreach (var item in Model.OrderDetail)
+                    {
+                        <tr>
+                            <td>@item.Product.ProductName</td>
+                            <td>@item.Product.Category.CategoryName</td>
+                            <td>@item.UnitPrice</td>
+                            <td>@item.Quantity</td>
+                            <td>@(item.Quantity * item.UnitPrice)</td>
+                        </tr>
+
+                       
+                        
+
+                    }
+                </table>
+              
+               
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+{
+   
+
+
+}

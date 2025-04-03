@@ -1,0 +1,328 @@
+﻿@model EmailViewModel
+
+
+@if (Model != null)
+{
+<div class="modal fade" id="modal-@Model.DivId" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog modal-md modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel"><i class="bi bi-list-ul"></i>Order Detail</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+					<div class="table-responsive">
+					<table class="table  table-hover text-wrap table-borderless" id="customers">
+
+						<tr >
+							<th>Product</th>
+							<th>Category</th>
+							<th>Price</th>
+							<th>Quantity</th>
+							<th>TotalPrice</th>
+						</tr>
+
+						@foreach (var item in Model.OrderDetail)
+						{
+							<tr>
+								<td>@item.Product.ProductName</td>
+								<td>@item.Product.Category.CategoryName</td>
+								<td>@item.UnitPrice</td>
+								<td>@item.Quantity</td>
+								<td>@(item.Quantity * item.UnitPrice)</td>
+							</tr>
+
+
+
+
+						}
+					</table>
+					</div>
+					<hr />
+					<h5><i class="bi bi-envelope-at"></i>Send Email</h5>
+                    <form method="post" asp-action="SendEmail" asp-route-DivId="@Model.DivId.ToString()" asp-route-OrderDetail="@Model.OrderDetail">
+						<div class="mb-3 row">
+							<label asp-for="ToEmail" class="col-sm-2 col-form-label"></label>
+							<div class="col-sm-10">
+								<input asp-for="ToEmail" type="email" readonly class="form-control-plaintext" id="email" />
+						</div>
+                        <span asp-validation-for="ToEmail"></span>
+                    </div>
+						<div class="mb-3 row">
+							<label asp-for="Subject" class="col-sm-2 col-form-label"></label>
+							<div class="col-sm-10">
+								<input asp-for="Subject" type="text" readonly class="form-control-plaintext" />
+						</div>
+                        <span asp-validation-for="Subject"></span>
+                    </div>
+						<div class="mb-3 row">
+							<label asp-for="Message" class="col-sm-2 col-form-label"></label>
+							<div class="col-sm-10">
+								<input asp-for="Message" type="text" id="qty" readonly class="form-control-plaintext" onclick="javascript: calc()"
+                                   value='<head>
+		<meta charset="utf-8" />
+		<title>A simple, clean, and responsive HTML invoice template</title>
+
+		<style>
+			.invoice-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				border: 1px solid #eee;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.15);
+				font-size: 16px;
+				line-height: 24px;
+				
+				color: #555;
+			}
+
+			.invoice-box table {
+				width: 100%;
+				line-height: inherit;
+				text-align: left;
+			}
+
+			.invoice-box table td {
+				padding: 5px;
+				vertical-align: top;
+			}
+
+			.invoice-box table tr td:nth-child(2) {
+				text-align: right;
+			}
+
+			.invoice-box table tr.top table td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.top table td.title {
+				font-size: 45px;
+				line-height: 45px;
+				color: #333;
+			}
+
+			.invoice-box table tr.information table td {
+				padding-bottom: 40px;
+			}
+
+			.invoice-box table tr.heading td {
+				background: #eee;
+				border-bottom: 1px solid #ddd;
+				font-weight: bold;
+			}
+
+			.invoice-box table tr.details td {
+				padding-bottom: 20px;
+			}
+
+			.invoice-box table tr.item td {
+				border-bottom: 1px solid #eee;
+			}
+
+			.invoice-box table tr.item.last td {
+				border-bottom: none;
+			}
+
+			.invoice-box table tr.total td:nth-child(2) {
+				border-top: 2px solid #eee;
+				font-weight: bold;
+			}
+
+			
+
+			
+
+			.invoice-box.rtl table {
+				text-align: right;
+			}
+
+			.invoice-box.rtl table tr td:nth-child(2) {
+				text-align: left;
+			}
+		</style>
+	</head>
+
+	<body>
+
+		<div class="invoice-box">
+								
+			<table cellpadding="0" cellspacing="0">
+				<tr class="top">
+					<td colspan="2">
+											@foreach(var item in Model.OrderDetail.Take(1)){
+						<table>
+							<tr>
+								<td class="title">
+														<img src="https://sparksuite.github.io/simple-html-invoice-template/images/logo.png"
+															 style="width: 100%; max-width: 300px" />
+								</td>
+
+								<td>
+									Invoice #: @item.OrderId<br />
+														Created: @item.Order.CreateDate.ToString("dd-MM-yyyy")<br />
+														Due: @item.Order.CreateDate.ToString("dd-MM-yyyy")
+
+								</td>
+							</tr>
+						</table>
+}
+					</td>
+				</tr>
+
+				<tr class="information">
+					<td colspan="2">
+											@foreach(var item in Model.OrderDetail.Take(1)){
+						<table>
+							<tr>
+								<td>
+									@item.Order.Address
+								</td>
+
+								<td>
+									@item.Order.Name<br />
+									@item.Order.MobileNumber<br />
+									@item.Order.Email
+								</td>
+							</tr>
+						</table>
+}
+					</td>
+				</tr>
+
+				<tr class="heading">
+					<td>Payment Method</td>
+
+					<td>Check #</td>
+				</tr>
+									@foreach(var item in Model.OrderDetail.Take(1)){
+				<tr class="details">
+					<td>@item.Order.PaymentMethod</td>
+
+					
+				</tr>
+}
+				<tr class="heading">
+					<td>Item</td>
+
+					<td>Price</td>
+<td>Quantity</td>
+<td>Category</td>
+				</tr>
+
+									@foreach (var items in Model.OrderDetail)
+									{
+									<tr class="item">
+										<td>@items.Product.ProductName</td>
+										
+										<td>@items.UnitPrice</td>
+										<td>@items.Quantity</td>
+										<td>@items.Product.Category.CategoryName</td>
+									</tr>
+
+
+
+
+									}
+
+
+			
+
+				<tr class="total">
+					<td></td>
+
+										<td>Total: £@(Model.OrderDetail.Select(item => item.Product.Price * item.Quantity).Sum())</td>
+				</tr>
+			</table>
+
+		</div>
+
+	</body>
+' />
+      </div>                     
+                            <span asp-validation-for="Message"></span>
+                        </div>
+
+					
+
+                    <div>
+							<input type="submit" value="Send Email" id="setText" class="btn btn-primary mb-3" />
+                    </div>
+
+                       
+
+                    </form>
+<hr />
+					<h5><i class="bi bi-chat-dots-fill"></i>Send Text-Message</h5>
+                    <form method="post" asp-action="SendMessage">
+						<div class="mb-3 row">
+							<label asp-for="MobileNumber" class="col-sm-2 col-form-label"></label>
+							<div class="col-sm-10">
+							<input asp-for="MobileNumber" type="text" id="MobileNumber" />
+</div>
+                            <span asp-validation-for="MobileNumber"></span>
+                        </div>
+						<div class="mb-3 row">
+							<label asp-for="Message" class="col-sm-2 col-form-label"></label>
+							<div class="col-sm-10">
+								<input asp-for="Message" type="text" id="qty" class="form-control-plaintext" value='Thanks for your order!The order total is £@(Model.OrderDetail.Select(item => item.Product.Price * item.Quantity).Sum())' readonly class="form-control-plaintext" />
+</div>
+                            <span asp-validation-for="Message"></span>
+                        </div>
+						<input type="submit" value="SMS" id="setText" class="btn btn-primary mb-3" />
+                    </form>
+                   
+
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+}
+
+@if (ViewBag.Message != null)
+{
+    <p>@ViewBag.Message</p>
+}
+
+  @section Scripts{
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script type="text/javascript">
+        
+        var calc = function () {
+            // function logic here
+            let uri = document.getElementById("demo").innerText;
+            let encoded = encodeURIComponent(uri);
+
+            document.getElementById("qty").innerHTML = encoded;
+            //myFunc("qty");
+        };
+    </script>
+    <script>
+        $(document).ready(function () {
+            $('#setText').click(function () {
+                myFunction();
+            });
+            $.fn.myFunction = function () {
+                alert('hi');
+                let uri = document.getElementById("demo").innerText;
+                let encoded = encodeURIComponent(uri);
+
+                document.getElementById("qty").innerHTML = encoded;
+            }
+        });
+        </script>
+    <script type="text/javascript">
+
+        function myFunc(variable) {
+            let uri = document.getElementById("demo").innerText;
+            let encoded = encodeURIComponent(uri);
+            var s = document.getElementById(variable);
+            s.value = encoded;
+        }
+       
+    </script>
+  }
