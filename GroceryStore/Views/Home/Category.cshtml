@@ -277,7 +277,7 @@
                                     <div style="overflow:hidden">
                                         <div style="height:100px;   overflow-y: scroll;">
                                             <!-- form check -->
-                                            @foreach (var item in Model.Brands.Where(x => x.CategoryId == Model.CategoryId))
+                                            @foreach (var item in Model.Brands.Where(x => x.CategoryId == Model.CategoryId).DistinctBy(x => x.Brand))
                                             {
 
                                                 <div class="form-check mb-2">
