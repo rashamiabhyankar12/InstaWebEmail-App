@@ -275,11 +275,7 @@
                                                 <div class="form-check mb-2">
 
                                                     <label id="Origin"><input type="checkbox" name="Origin" value="@item.Origin" class="Origin" onsubmit="submit()">@item.Origin</label><br>
-                                                    <!-- input -->
-                                                    @*  <input class="form-check-input" type="checkbox" value="@item" name="Origin[]"  onclick="submit()" asp-route-Origin="value" asp-route-categoryId="@Model.CategoryId" /> *@
-                                                    @* <label class="form-check-label" for="Origin">
-                                        @item (@Model.Products.Where(X => X.Origin == @item).Count())
-                                    </label> *@
+                                              
 
                                                 </div>
                                             }
