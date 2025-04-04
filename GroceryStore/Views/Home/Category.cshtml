@@ -4,181 +4,181 @@
 
 <style>
 
-    
+
     .owl-thumbs .owl-thumb-item:nth-child(2) {
-        transform: rotate(180deg);
+    transform: rotate(180deg);
     }
 
     .owl-thumbs .owl-thumb-item:nth-child(3) {
-        transform: rotate(90deg);
+    transform: rotate(90deg);
     }
 
     .owl-thumbs .owl-thumb-item:nth-child(4) {
-        transform: rotate(-90deg);
+    transform: rotate(-90deg);
     }
 
     .owl-thumbs .owl-thumb-item {
-        height: 150px;
-        width: 100%;
-        max-width: 150px;
-        background: transparent;
-        border: none;
-        overflow: hidden;
+    height: 150px;
+    width: 100%;
+    max-width: 150px;
+    background: transparent;
+    border: none;
+    overflow: hidden;
     }
 
-        .owl-thumbs .owl-thumb-item img {
-            max-width: 100%;
-            height: auto;
-        }
+    .owl-thumbs .owl-thumb-item img {
+    max-width: 100%;
+    height: auto;
+    }
 
     .owl-dots {
-        position: absolute;
-        bottom: 170px;
-        left: 0;
-        right: 0;
+    position: absolute;
+    bottom: 170px;
+    left: 0;
+    right: 0;
     }
 
     .sv-slider-item img {
-        width: 100%;
-        height: 200px;
+    width: 100%;
+    height: 200px;
     }
 
     .sv-slider .owl-thumbs {
-        white-space: nowrap;
-        overflow: auto;
+    white-space: nowrap;
+    overflow: auto;
     }
 
     .owl-thumbs button > img {
-        width: 200px;
-        height: 100px;
+    width: 200px;
+    height: 100px;
     }
 
     .offcanvas-backdrop {
-        display: none;
+    display: none;
     }
 
 
     .card {
-        margin-right: 10px !important;
+    margin-right: 10px !important;
     }
 
     .store-card {
-        transition: all 0.2s ease;
+    transition: all 0.2s ease;
     }
 
-        .store-card:hover {
-            transform: scale(1.03);
-            box-shadow: lightgray 2px 5px 5px 2px;
-        }
+    .store-card:hover {
+    transform: scale(1.03);
+    box-shadow: lightgray 2px 5px 5px 2px;
+    }
 
     .accent {
-        accent-color: green;
+    accent-color: green;
     }
 
     fieldset.group {
-        margin: 0;
-        padding: 0;
-        margin-bottom: 1.25em;
-        padding: .125em;
+    margin: 0;
+    padding: 0;
+    margin-bottom: 1.25em;
+    padding: .125em;
     }
 
-        fieldset.group legend {
-            margin: 0;
-            padding: 0;
-            font-weight: bold;
-            margin-left: 20px;
-            font-size: 100%;
-            color: black;
-        }
+    fieldset.group legend {
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+    margin-left: 20px;
+    font-size: 100%;
+    color: black;
+    }
 
 
     ul.checkbox {
-        margin: 0;
-        padding: 0;
-        margin-left: 20px;
-        list-style: none;
-        overflow-x: scroll;
+    margin: 0;
+    padding: 0;
+    margin-left: 20px;
+    list-style: none;
+    overflow-x: scroll;
     }
 
-        ul.checkbox li input {
-            margin-right: .25em;
-        }
+    ul.checkbox li input {
+    margin-right: .25em;
+    }
 
-        ul.checkbox li {
-            border: 1px transparent solid;
-            display: inline-block;
-            width: 12em;
-        }
+    ul.checkbox li {
+    border: 1px transparent solid;
+    display: inline-block;
+    width: 12em;
+    }
 
-            ul.checkbox li label {
-                margin-left:;
-            }
+    ul.checkbox li label {
+    margin-left:;
+    }
 
-            ul.checkbox li:hover,
-            ul.checkbox li.focus {
-                background-color: lightyellow;
-                border: 1px gray solid;
-                width: 12em;
-            }
+    ul.checkbox li:hover,
+    ul.checkbox li.focus {
+    background-color: lightyellow;
+    border: 1px gray solid;
+    width: 12em;
+    }
 
-        ul.checkbox li {
-            border: 1px transparent solid;
-            display: inline-block;
-            width: 12em;
-        }
+    ul.checkbox li {
+    border: 1px transparent solid;
+    display: inline-block;
+    width: 12em;
+    }
 
     .img_producto_container {
-        /*  width: 100%;
-        height: 100%; */
-        position: relative;
-        overflow: hidden;
-        cursor: crosshair;
+    /*  width: 100%;
+    height: 100%; */
+    position: relative;
+    overflow: hidden;
+    cursor: crosshair;
     }
 
     .img_producto {
-        /* position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%; */
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: cover;
-        transition: transform 0.5s ease-out;
+    /* position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; */
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    transition: transform 0.5s ease-out;
     }
 
     .f_btn {
-        padding: 8px 20px;
-        border: 2px solid #089da1;
-        text-decoration: none;
-        color: #000;
+    padding: 8px 20px;
+    border: 2px solid #089da1;
+    text-decoration: none;
+    color: #000;
     }
 
     .fa-heart {
-        font-size: 20px;
+    font-size: 20px;
     }
 
     #snackbar {
-        visibility: hidden;
-        min-width: 250px;
-        margin-left: -125px;
-        background-color: #333;
-        color: #fff;
-        text-align: center;
-        border-radius: 2px;
-        padding: 16px;
-        position: fixed;
-        z-index: 1;
-        left: 50%;
-        bottom: 30px;
-        font-size: 17px;
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    border-radius: 2px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 30px;
+    font-size: 17px;
     }
 
-        #snackbar.show {
-            visibility: visible;
-            -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
-            animation: fadein 0.5s, fadeout 0.5s 2.5s;
-        }
+    #snackbar.show {
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
 </style>
 
 <div class="mt-4">
@@ -227,7 +227,7 @@
                                     {
 
                                         <a asp-action="Category" asp-route-sub="@item.SubcategoryID" asp-route-categoryId="@Model.CategoryId" asp-route-Brand="@Model.Brand" asp-route-Origin="@Model.Origin"
-                                           class="nav-link collapsed">
+                                        class="nav-link collapsed">
                                             @item.SubcategoryName
                                             <i class="fa-solid fa-chevron-right"></i>
 
@@ -246,18 +246,31 @@
                                     <div style="overflow:hidden">
                                         <div style="height:100px;   overflow-y: scroll;">
                                             <!-- form check -->
+
                                             @foreach (var item in Model.Brands.Where(x => x.CategoryId == Model.CategoryId).DistinctBy(x => x.Brand))
                                             {
 
                                                 <div class="form-check mb-2">
 
-                                                    <label id="Brand"><input type="checkbox" name="Brand" value="@item.Brand" class="Brand" onsubmit="submit()">@item.Brand</label><br>
+                                                   
 
-
+                                                        <label id="Brand">
+                                                            <input type="checkbox" name="Brand" value="@item.Brand" class="Brand form-check-input" onsubmit="submit()">@item.Brand
+                                                        </label>
+                                                    
+                                                        <br>
+                                                  
+                                                   
                                                 </div>
 
 
+
+
+
                                             }
+
+
+
                                         </div>
 
                                     </div>
@@ -274,11 +287,12 @@
                                             {
                                                 <div class="form-check mb-2">
 
-                                                    <label id="Origin"><input type="checkbox" name="Origin" value="@item.Origin" class="Origin" onsubmit="submit()">@item.Origin</label><br>
-                                              
+                                                    <label id="Origin"><input type="checkbox" name="Origin" value="@item.Origin" class="Origin form-check-input" onsubmit="submit()">@item.Origin</label><br>
 
+                                                    
                                                 </div>
                                             }
+
                                         </div>
                                     </div>
                                 </div>
@@ -358,15 +372,15 @@
                 <div class="ms-2 d-lg-none">
                     <a class="btn btn-outline-gray-400 text-muted" data-bs-toggle="offcanvas" href="#offcanvasCategory" role="button" aria-controls="offcanvasCategory">
                         <svg xmlns="http://www.w3.org/2000/svg"
-                             width="14"
-                             height="14"
-                             viewBox="0 0 24 24"
-                             fill="none"
-                             stroke="currentColor"
-                             stroke-width="2"
-                             stroke-linecap="round"
-                             stroke-linejoin="round"
-                             class="feather feather-filter me-2">
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        class="feather feather-filter me-2">
                             <polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"></polygon>
                         </svg>
                         Filters
@@ -430,15 +444,15 @@
 
                                                 <a href="#!" class="btn btn-primary btn-sm" onclick="add(@item.Id)">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
-                                                         width="16"
-                                                         height="16"
-                                                         viewBox="0 0 24 24"
-                                                         fill="none"
-                                                         stroke="currentColor"
-                                                         stroke-width="2"
-                                                         stroke-linecap="round"
-                                                         stroke-linejoin="round"
-                                                         class="feather feather-plus">
+                                                    width="16"
+                                                    height="16"
+                                                    viewBox="0 0 24 24"
+                                                    fill="none"
+                                                    stroke="currentColor"
+                                                    stroke-width="2"
+                                                    stroke-linecap="round"
+                                                    stroke-linejoin="round"
+                                                    class="feather feather-plus">
                                                         <line x1="12" y1="5" x2="12" y2="19"></line>
                                                         <line x1="5" y1="12" x2="19" y2="12"></line>
                                                     </svg>
@@ -623,36 +637,34 @@
 
     <script>
 
-                   $('.sv-slider .owl-carousel').owlCarousel({
-          autoplay: false,
-          autoplayHoverPause: true,
-          dots: false,
-          nav: true,
-          thumbs: true,
-          thumbImage: true,
-          //thumbsPrerendered: true,
-          thumbContainerClass: 'owl-thumbs',
-          thumbItemClass: 'owl-thumb-item',
-          loop: true,
+        $('.sv-slider .owl-carousel').owlCarousel({
+        autoplay: false,
+        autoplayHoverPause: true,
+        dots: false,
+        nav: true,
+        thumbs: true,
+        thumbImage: true,
+        //thumbsPrerendered: true,
+        thumbContainerClass: 'owl-thumbs',
+        thumbItemClass: 'owl-thumb-item',
+        loop: true,
 
-          items: 1,
-          responsive: {
-            0: {
-              items: 1,
-            },
-            768: {
-              items: 1,
-            },
-            992: {
-              items: 1,
-            }
-          }
+        items: 1,
+        responsive: {
+        0: {
+        items: 1,
+        },
+        768: {
+        items: 1,
+        },
+        992: {
+        items: 1,
+        }
+        }
         });
 
     </script>
-    <script>
-        // $('.Checkbox:checked').map(function() {return this.value;}).get().join(',');
-    </script>
+ 
 
 
     <script>
@@ -681,6 +693,7 @@
 
 
     </script>
+    
     <script>
 
                       $(function () {
@@ -699,11 +712,14 @@
                     var Origin = [];
 
                     if (window.location.href.indexOf(this.name) > -1) {
-
+                                       
                         $('input[type="checkbox"]').each(function (i) {
                         if (this.checked) {
+                           
                             if (this.name == 'Brand') {
                                 Brand.push(this.value);
+                               
+
                             } else if (this.name = 'Origin') {
                                 Origin.push(this.value);
                             }
