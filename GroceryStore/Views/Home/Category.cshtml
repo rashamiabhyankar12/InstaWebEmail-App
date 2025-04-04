@@ -712,8 +712,8 @@
                     var Origin = [];
 
                     if (window.location.href.indexOf(this.name) > -1) {
-                                       
-                        $('input[type="checkbox"]').each(function (i) {
+                                   
+                                $('input[type="checkbox"]').each(function (i) {
                         if (this.checked) {
                            
                             if (this.name == 'Brand') {
@@ -770,8 +770,25 @@
 
 
 
+                //var j = window.location.href.lastIndexOf('&');
+                var i = window.location.href.lastIndexOf('&');
 
+        var types = (window.location.href.substring(i+1).replace(/Brand=/g,'').split(','));
 
+                 function cleanStrings(arr) {
+          return arr.map(str => decodeURI(str));
+        }
+        var cleanedArray = cleanStrings(types);
+      
+        var origins = window.location.href.substring(i+1).replace(/Origin=/g,'').split(',');
+          var clean =cleanStrings(origins);
+        $('input[name="Brand"]').prop('checked',function(){
+             return $.inArray(this.value,cleanedArray) !== -1;
+            
+        });
+         $('input[name="Origin"]').prop('checked',function(){
+             return $.inArray(this.value,clean) !== -1;
+        });
     </script>
 
     <script>

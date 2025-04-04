@@ -233,7 +233,7 @@
 
                                             <div class="form-check mb-2">
 
-                                                <label id="Brand"><input type="checkbox" name="Brand" value="@item.Brand" class="Brand" onsubmit="submit()">@item.Brand</label><br>
+                                                <label id="Brand"><input type="checkbox" name="Brand" value="@item.Brand" class="Brand form-check-input" onsubmit="submit()">@item.Brand</label><br>
 
 
                                             </div>
@@ -253,7 +253,7 @@
                                         {
                                             <div class="form-check mb-2">
 
-                                                <label id="Origin"><input type="checkbox" name="Origin" value="@item.Origin" class="Origin" onsubmit="submit()">@item.Origin</label><br>
+                                                <label id="Origin"><input type="checkbox" name="Origin" value="@item.Origin" class="Origin form-check-input" onsubmit="submit()">@item.Origin</label><br>
 
 
                                             </div>
@@ -686,7 +686,24 @@
         });
 
 
+         var i = window.location.href.lastIndexOf('&');
 
+        var types = (window.location.href.substring(i+1).replace(/Brand=/g,'').split(','));
+
+                 function cleanStrings(arr) {
+          return arr.map(str => decodeURI(str));
+        }
+        var cleanedArray = cleanStrings(types);
+
+        var origins = window.location.href.substring(i+1).replace(/Origin=/g,'').split(',');
+          var clean =cleanStrings(origins);
+        $('input[name="Brand"]').prop('checked',function(){
+             return $.inArray(this.value,cleanedArray) !== -1;
+
+        });
+         $('input[name="Origin"]').prop('checked',function(){
+             return $.inArray(this.value,clean) !== -1;
+        });
 
 
     </script>
