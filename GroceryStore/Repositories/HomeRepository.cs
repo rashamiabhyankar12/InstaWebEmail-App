@@ -146,7 +146,7 @@ namespace GroceryStore.Repositories
                                                        Quantity = productWithStock == null ? 0 : productWithStock.Quantity,
                                                        Brand = product.Brand,
                                                        Origin = product.Origin,
-
+                                                       Ratings= product.Ratings
                                                    }
                          ).ToListAsync();
             if (categoryId > 0)
