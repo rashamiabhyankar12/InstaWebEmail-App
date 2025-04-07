@@ -367,7 +367,16 @@
                         </p>
 
                     </div>
-
+                    <div class="mb-3 mb-lg-0">
+                        <!-- select option -->
+                        <select class="form-select" onchange="location = this.value;">
+                            <option selected>Sort by: Featured</option>
+                            <option value='Category?categoryId=@Model.CategoryId&LowToHigh=LowToHigh'>Price: Low to High</option>
+                            <option value='Category?categoryId=@Model.CategoryId&HighToLow=HighToLow'>Price: High to Low</option>
+                            <option value='Category?categoryId=@Model.CategoryId&AToZ=AToZ'>AToZ</option>
+                            <option value='Category?categoryId=@Model.CategoryId&ZToA=ZToA'>ZToA</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="ms-2 d-lg-none">
                     <a class="btn btn-outline-gray-400 text-muted" data-bs-toggle="offcanvas" href="#offcanvasCategory" role="button" aria-controls="offcanvasCategory">
