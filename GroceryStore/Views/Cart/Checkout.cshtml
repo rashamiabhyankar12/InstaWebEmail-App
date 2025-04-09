@@ -4,7 +4,7 @@
 }
 
 <h2>Checkout</h2>
-<form asp-action="Checkout">
+<form asp-action="Checkout" id="form">
     <div class="py-2">
         <label asp-for="Name">Name*</label>
         <input type="text" class="form-control" asp-for="Name" />
@@ -18,13 +18,13 @@
 
     </div>
 
+
     <div class="py-2">
-        <label asp-for="MobileNumber">MobileNumber(Please enter country code)*</label>
-        <input class="form-control" asp-for="MobileNumber"/>
-         <span asp-validation-for="MobileNumber" class="text-danger"></span>
-
-        
-
+        <label asp-for="Email">MobileNumber*</label>
+        <input id="phone" type="tel" placeholder="Enter your mobile number" name="phone">
+       
+        <input id="phone2" type="tel" placeholder="Enter your mobile number" name="MobileNumber" asp-for="MobileNumber" readonly>
+        <span asp-validation-for="MobileNumber" class="text-danger"></span>
     </div>
 
 
@@ -52,4 +52,33 @@
 
     </div>
 </form>
-
+<div class="alert alert-info" style="display: none;"></div>
+@section Scripts
+{
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/js/intlTelInput.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.12/css/intlTelInput.css" rel="stylesheet" />
+    <script>
+                $(document).ready(function() {
+          var phoneInputID = "#phone";
+          var input = document.querySelector(phoneInputID);
+          var iti = window.intlTelInput(input, {
+            formatOnDisplay: true,
+            geoIpLookup: function(callback) {
+               $.get("https://ipinfo.io", function() {}, "jsonp").always(function(resp) {
+                 var countryCode = (resp && resp.country) ? resp.country : "";
+                 callback(countryCode);
+               });
+            },
+            hiddenInput: "full_number",
+            initialCountry: "auto",
+            // separateDialCode: true,
+            utilsScript: "https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/11.0.14/js/utils.js"
+          });
+          input.addEventListener('input', function() {
+            var fullNumber = iti.getNumber();
+            document.getElementById('phone2').value = fullNumber;
+          });
+        });
+    </script>
+}
