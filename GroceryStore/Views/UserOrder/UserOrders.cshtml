@@ -37,80 +37,141 @@ margin-top: -5px;
 padding-top: 15px;
 }
 </style>
+@foreach (var order in Model)
+{
 
- @foreach (var order in Model){
-<section class="h-100 h-custom" style="background-color: #eee;">
-  <div class="container py-5 h-100">
-    <div class="row d-flex justify-content-center align-items-center h-100">
-      <div class="col-lg-8 col-xl-6">
-        <div class="card border-top border-bottom border-3" style="border-color: #f37a27 !important;">
-          <div class="card-body p-5">
-
-            <p class="lead fw-bold mb-5" style="color: #f37a27;">Purchase Reciept</p>
-
-            <div class="row">
-              <div class="col mb-3">
-                <p class="small text-muted mb-1">Date</p>
-                <p>@order.CreateDate.ToString("dd-MM-yyyy")</p>
-              </div>
-              <div class="col mb-3">
-                <p class="small text-muted mb-1">Order No.</p>
-                <p>@order.Id</p>
-              </div>
-            </div>
-              
-            <div class="mx-n5 px-5 py-4" style="background-color: #f2f2f2;">
-             
-
-               <div class="table-responsive">
-        <table class="table table-centered table-hover text-nowrap table-borderless mb-0">
-            <tr class="bg-light">
-               
-            <th>Product</th>
-             <th>Image</th>
-            
-            <th>Category</th>
-            
-            <th>Price</th>
-             <th>Quantity</th>
-                </tr>
-                 @foreach (var item in order.OrderDetail){
-                 <tr>
-                
-                <td>@item.Product.ProductName</td>
-                <td>
-                    @if(string.IsNullOrWhiteSpace(@item.Product.Image))
-                    {
-                            <img src="/Images/NoImage.png" alt="product image" class="avatar" />
-                    }
-                    else
-                    {
-                            <img src="/images/@item.Product.Image" alt="product image" class="avatar" />
-                    }
-                </td>
-                <td>@item.Product.Category.CategoryName</td>
-                <td>@item.UnitPrice</td>
-                 
-                <td>@item.Quantity</td>
-                </tr>
-                }
-                </table>
+<div class="row">
+    <div class="col-xl-12 col-12 mb-5">
+        <!-- card -->
+        <div class="card h-100 card-lg">
+            <div class="card-body p-6">
+                <div class="d-md-flex justify-content-between">
+                    <div class="d-flex align-items-center mb-2 mb-md-0">
+                        <h2 class="mb-0">Order ID: #@order.Id</h2>
+                      
+                    </div>
+                    
+                   
                 </div>
-
-
-
-
+                <div class="mt-8">
+                    <div class="row">
+                        <!-- address -->
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="mb-6">
+                                <h6>Customer Details</h6>
+                                <p class="mb-1 lh-lg">
+                                    @order.Name
+                                    <br />
+                                    @order.Email
+                                    <br />
+                                    @order.MobileNumber
+                                </p>
+                                
+                            </div>
+                        </div>
+                        <!-- address -->
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="mb-6">
+                                <h6>Shipping Address</h6>
+                                <p class="mb-1 lh-lg">
+                                        @order.Address
+                                </p>
+                            </div>
+                        </div>
+                        <!-- address -->
+                        <div class="col-lg-4 col-md-4 col-12">
+                            <div class="mb-6">
+                                <h6>Order Details</h6>
+                                <p class="mb-1 lh-lg">
+                                    Order ID:
+                                    <span class="text-dark">@order.Id</span>
+                                    <br />
+                                    Order Date:
+                                        <span class="text-dark">@order.CreateDate.ToString("dd-MM-yyyy")</span>
+                                    <br />
+                                    Order Total:
+                                        <span class="text-dark">£@(order.OrderDetail.Select(item => item.Product.Price * item.Quantity).Sum())</span>
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            
-            <div class="row my-4">
-              <div class="col-md-4 offset-md-8 col-lg-3 offset-lg-9">
-                <p class="lead fw-bold mb-0" style="color: #f37a27;">£@(order.OrderDetail.Select(item => item.Product.Price * item.Quantity).Sum())</p>
-              </div>
-            </div>
-
-            <p class="lead fw-bold mb-4 pb-2" style="color: #f37a27;">Tracking Order</p>
-
             <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <!-- Table -->
+                        <table class="table mb-0 text-nowrap table-centered">
+                            <!-- Table Head -->
+                            <thead class="bg-light">
+                                <tr>
+                                    <th>Products</th>
+                                    <th>Price</th>
+                                    <th>Quantity</th>
+                                    <th>Total</th>
+                                </tr>
+                            </thead>
+                            <!-- tbody -->
+                            <tbody>
+                                @foreach (var item in order.OrderDetail){
+
+                                <tr>
+                                    <td>
+                                        <a href="#" class="text-inherit">
+                                            <div class="d-flex align-items-center">
+                                                <div>
+                                                    <img src="/images/@item.Product.Image" alt="" class="icon-shape icon-lg" />
+                                                </div>
+                                                <div class="ms-lg-4 mt-2 mt-lg-0">
+                                                    <h5 class="mb-0 h6">@item.Product.ProductName</h5>
+                                                </div>
+                                            </div>
+                                        </a>
+                                    </td>
+                                    <td><span class="text-body">@item.UnitPrice</span></td>
+                                    <td>@item.Quantity</td>
+                                    <td>@item.UnitPrice*@item.Quantity</td>
+                                </tr>
+                             }
+                                <tr>
+                                    <td class="border-bottom-0 pb-0"></td>
+                                    <td class="border-bottom-0 pb-0"></td>
+                                   
+                                   
+                                </tr>
+                                <tr>
+                                    <td class="border-bottom-0 pb-0"></td>
+                                    <td class="border-bottom-0 pb-0"></td>
+                                   
+                                   
+                                </tr>
+
+                                <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="1" class="fw-semibold text-dark">
+                                        <!-- text -->
+                                        Grand Total
+                                    </td>
+                                    <td class="fw-semibold text-dark">
+                                        <!-- text -->
+                                        £@(order.OrderDetail.Select(item => item.UnitPrice * item.Quantity).Sum())
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body p-6">
+                <div class="row">
+                    <div class="col-md-6 mb-4 mb-lg-0">
+                        <h6>Payment Info</h6>
+                        <span>@order.PaymentMethod</span>
+                    </div>
+                   <p class="lead fw-bold mb-4 pb-2" style="color: #f37a27;">Tracking Order</p>
+
+           
               <div class="col-lg-12">
 
                 <div class="horizontal-timeline">
@@ -233,14 +294,11 @@ padding-top: 15px;
                 </div>
 
               </div>
+
+               
             </div>
-
-           
-
-          </div>
         </div>
-      </div>
     </div>
-  </div>
-</section>
-}
+</div>
+</div>
+}        
