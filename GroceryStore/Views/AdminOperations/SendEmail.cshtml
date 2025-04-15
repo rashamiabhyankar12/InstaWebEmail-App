@@ -229,7 +229,7 @@
 				<tr class="total">
 					<td></td>
 
-										<td>Total: £@(Model.OrderDetail.Select(item => item.Product.Price * item.Quantity).Sum())</td>
+										<td>Total: £@(Model.OrderDetail.Select(item => item.UnitPrice * item.Quantity).Sum())</td>
 				</tr>
 			</table>
 
