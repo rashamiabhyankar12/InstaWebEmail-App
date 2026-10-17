@@ -1,0 +1,36 @@
+name: Build .NET frontend and deploy to Netlify
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore and publish .NET
+        run: |
+          dotnet restore GroceryStore/GroceryStore.csproj
+          dotnet publish GroceryStore/GroceryStore.csproj -c Release -o ./publish
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Install netlify-cli
+        run: npm install -g netlify-cli
+
+      - name: Deploy to Netlify
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ nfp_Y7u8r4DaG82EdpNcsiV2Tq9yQGWAyLxT8b08 }}
+          NETLIFY_SITE_ID: ${{ 47194fa6-2978-4029-9b6c-cd9481c74bd6 }}
+        run: |
+          if [ ! -d ./publish/wwwroot ]; then echo "publish/wwwroot not found"; ls -la ./publish; exit 1; fi
+          netlify deploy --dir=./publish/wwwroot --prod --site=$NETLIFY_SITE_ID
