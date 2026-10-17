@@ -1,60 +1,79 @@
-<img width="1440" height="720" alt="figmawebposter" src="https://github.com/user-attachments/assets/58c7f33a-4fcc-4072-8642-8e0e3a41f86c" />
+# InstaWebEmail-App
 
+![App UI preview](https://github.com/user-attachments/assets/58c7f33a-4fcc-4072-8642-8e0e3a41f86c)
 
-🔧 Setup Steps
-Install prerequisites
+A web application built with ASP.NET and SQL Server for managing grocery-related operations. This project is designed to run locally in Visual Studio and connects to a SQL Server database named `Grocery`.
 
-1.Install Visual Studio (Community edition works fine).
+## Table of Contents
+- [Prerequisites](#prerequisites)
+- [Setup](#setup)
+- [Database configuration](#database-configuration)
+- [Import database](#import-database)
+- [Run the application](#run-the-application)
+- [Admin login](#admin-login)
 
-2.Install SQL Server (Developer edition recommended).
+## Prerequisites
+Before starting, make sure you have the following installed:
 
-3.Clone the repository
+- Visual Studio 2022 or later (Community edition is sufficient)
+- SQL Server (Developer edition recommended)
+- SQL Server Management Studio (SSMS)
+- Git
 
-4.Open Command Prompt.
+## Setup
+1. Clone the repository:
 
-5.Navigate to the folder where you want the project.
+   ```bash
+   git clone https://github.com/rashamiabhyankar12/InstaWebEmail-App.git
+   ```
 
-6.Run:
+2. Open the solution in Visual Studio:
+   - Navigate to the cloned repository folder
+   - Open the `InstaWebEmail-App` directory
+   - Double-click `GroceryStore.sln`
 
-cmd
-git clone https://github.com/rashamiabhyankar12/InstaWebEmail-App.git
+## Database configuration
+Open `appsettings.json` and update the database connection string.
 
-7.Open the solution
+Example:
 
-8.Go to the cloned folder → InstaWebEmail-App.
-
-9.Double‑click GroceryStore.sln to open in Visual Studio.
-
-10.Configure database connection
-
-Open appsettings.json.
-
-Update the connection string:
-
-json
+```json
 "ConnectionStrings": {
   "conn": "data source=YOUR_SERVER_NAME;initial catalog=Grocery;integrated security=true;encrypt=false"
 }
-Replace YOUR_SERVER_NAME with your SQL Server instance (e.g., RASHAMI\\SQLEXPRESS).
+```
 
-11.Import database
+Replace `YOUR_SERVER_NAME` with your local SQL Server instance name, for example:
 
-In SQL Server Management Studio (SSMS):
+```text
+RASHAMI\SQLEXPRESS
+```
 
-Right‑click Databases → Import Data‑tier Application.
+> The connection string should point to an instance where the `Grocery` database exists or where the `.bacpac` file will be imported.
 
-Select Grocery.bacpac file.
+## Import database
+Use SSMS to import the database into SQL Server:
 
-Complete the wizard to create the Grocery database.
+1. Open SQL Server Management Studio (SSMS)
+2. Connect to your SQL Server instance
+3. Right-click `Databases`
+4. Select `Import Data-tier Application...`
+5. Choose the `Grocery.bacpac` file
+6. Complete the wizard to create the `Grocery` database
 
-12.👤 Admin Login
-Once the app is running, use these credentials to log in:
+## Run the application
+Once the solution is open and the database is configured:
 
-Username: admin@gmail.com
+1. Restore NuGet packages if prompted
+2. Build the solution
+3. Start the app in Visual Studio
+4. Sign in using the admin credentials below
 
-Password: Admin@123
+## Admin login
+Use the following credentials to sign in after the app is running:
 
-✅ After this, you should be able to run the app, connect to the Grocery database, and log in with the admin account.
-   
+- Username: `admin@gmail.com`
+- Password: `Admin@123`
 
-
+## Summary
+After completing the setup steps, the project should run locally, connect to the `Grocery` database, and allow access with the default admin account.
