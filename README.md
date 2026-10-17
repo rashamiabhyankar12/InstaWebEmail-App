@@ -18,6 +18,7 @@ Install prerequisites
 
 cmd
 git clone https://github.com/rashamiabhyankar12/InstaWebEmail-App.git
+
 7.Open the solution
 
 8.Go to the cloned folder → InstaWebEmail-App.
