@@ -2,7 +2,11 @@
 
 ![App UI preview](https://github.com/user-attachments/assets/58c7f33a-4fcc-4072-8642-8e0e3a41f86c)
 
-A web application built with ASP.NET and SQL Server for managing grocery-related operations. This project is designed to run locally in Visual Studio and connects to a SQL Server database named `Grocery`.
+## Design
+
+- Figma: https://www.figma.com/community/file/1693499034366973757
+
+A web application built with ASP.NET and SQL Server for managing grocery-related operations. This project is designed to run locally in Visual Studio and connects to a SQL Server database named `Groce[...] 
 
 ## Table of Contents
 - [Prerequisites](#prerequisites)
