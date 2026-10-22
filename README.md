@@ -1,10 +1,11 @@
 # InstaWebEmail-App
 
-![App UI preview](https://github.com/user-attachments/assets/58c7f33a-4fcc-4072-8642-8e0e3a41f86c)
+<img width="401" height="206" alt="Screenshot 2026-10-21 211049" src="https://github.com/user-attachments/assets/889d0513-6d73-4670-b703-e68cd7d6e060" />
+
 
 ## Design
 
-- Figma: [https://www.figma.com/community/file/1694294795649635279](https://www.figma.com/community/file/1694294795649635279)
+- Figma: https://www.figma.com/community/file/1694950599506155260
 
 A web application built with ASP.NET and SQL Server for managing grocery-related operations. This project is designed to run locally in Visual Studio and connects to a SQL Server database named `Groce[...] 
 
