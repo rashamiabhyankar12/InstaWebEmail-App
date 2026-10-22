@@ -5,8 +5,8 @@
 
 ## Design
 
-- Figma: https://www.figma.com/community/file/1694950599506155260
-
+- Figma: https://www.figma.com/community/file/1694979923140055887
+  
 A web application built with ASP.NET and SQL Server for managing grocery-related operations. This project is designed to run locally in Visual Studio and connects to a SQL Server database named `Groce[...] 
 
 ## Table of Contents
